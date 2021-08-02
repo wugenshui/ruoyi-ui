@@ -1,0 +1,27 @@
+name: Docker Image CI
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      DOCKER_IMAGE_VERSION: 3.0.0
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 1.8
+        uses: actions/setup-node@v2
+        with:
+          node-version: '12.x'
+          registry-url: 'http://registry.npm.taobao.org'
+      - name: npm install
+        run: npm install
+      - name: npm run build:prod
+        run: npm run build:prod
+      - name: Build the Docker image
+        run: |
+          # 登录阿里云镜像仓库
+          docker login --username=${{ github.repository_owner }} --password=${{ secrets.DOCKER_PASSWORD }}
+
+          cd target
+          docker build . --file ../Dockerfile --tag ${{ github.repository_owner }}/ruoyi-ui:$DOCKER_IMAGE_VERSION
+          docker push ${{ github.repository_owner }}/ruoyi-ui:$DOCKER_IMAGE_VERSION
+
