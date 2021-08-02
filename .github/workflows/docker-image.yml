@@ -21,7 +21,7 @@ jobs:
           # 登录阿里云镜像仓库
           docker login --username=${{ github.repository_owner }} --password=${{ secrets.DOCKER_PASSWORD }}
 
-          cd target
+          cd dist
           docker build . --file ../Dockerfile --tag ${{ github.repository_owner }}/ruoyi-ui:$DOCKER_IMAGE_VERSION
           docker push ${{ github.repository_owner }}/ruoyi-ui:$DOCKER_IMAGE_VERSION
 
