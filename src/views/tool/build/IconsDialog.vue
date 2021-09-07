@@ -13,19 +13,14 @@
         <el-input
           v-model="key"
           size="mini"
-          :style="{width: '260px'}"
+          :style="{ width: '260px' }"
           placeholder="请输入图标名称"
           prefix-icon="el-icon-search"
           clearable
         />
       </div>
       <ul class="icon-ul">
-        <li
-          v-for="icon in iconList"
-          :key="icon"
-          :class="active===icon?'active-item':''"
-          @click="onSelect(icon)"
-        >
+        <li v-for="icon in iconList" :key="icon" :class="active === icon ? 'active-item' : ''" @click="onSelect(icon)">
           <i :class="icon" />
           <div>{{ icon }}</div>
         </li>
@@ -36,7 +31,7 @@
 <script>
 import iconList from '@/utils/generator/icon.json'
 
-const originList = iconList.map(name => `el-icon-${name}`)
+const originList = iconList.map((name) => `el-icon-${name}`)
 
 export default {
   inheritAttrs: false,
@@ -45,17 +40,17 @@ export default {
     return {
       iconList: originList,
       active: null,
-      key: ''
+      key: '',
     }
   },
   watch: {
     key(val) {
       if (val) {
-        this.iconList = originList.filter(name => name.indexOf(val) > -1)
+        this.iconList = originList.filter((name) => name.indexOf(val) > -1)
       } else {
         this.iconList = originList
       }
-    }
+    },
   },
   methods: {
     onOpen() {
@@ -67,8 +62,8 @@ export default {
       this.active = icon
       this.$emit('select', icon)
       this.$emit('update:visible', false)
-    }
-  }
+    },
+  },
 }
 </script>
 <style lang="scss" scoped>
@@ -90,9 +85,9 @@ export default {
     &:hover {
       background: #f2f2f2;
     }
-    &.active-item{
+    &.active-item {
       background: #e1f3fb;
-      color: #7a6df0
+      color: #7a6df0;
     }
     > i {
       font-size: 30px;
