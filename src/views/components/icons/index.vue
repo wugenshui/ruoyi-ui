@@ -1,7 +1,8 @@
 <template>
   <div class="icons-container">
     <aside>
-      <a href="#" target="_blank">Add and use </a>
+      <a href="#" target="_blank">Add and use
+      </a>
     </aside>
     <el-tabs type="border-card">
       <el-tab-pane label="Icons">
@@ -43,7 +44,7 @@ export default {
   data() {
     return {
       svgIcons,
-      elementIcons,
+      elementIcons
     }
   },
   methods: {
@@ -52,8 +53,8 @@ export default {
     },
     generateElementIconCode(symbol) {
       return `<i class="el-icon-${symbol}" />`
-    },
-  },
+    }
+  }
 }
 </script>
 

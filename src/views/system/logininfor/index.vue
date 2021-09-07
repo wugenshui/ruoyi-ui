@@ -1,12 +1,12 @@
 <template>
   <div class="app-container">
-    <el-form v-show="showSearch" ref="queryForm" :model="queryParams" :inline="true" label-width="68px">
+    <el-form :model="queryParams" ref="queryForm" :inline="true" v-show="showSearch" label-width="68px">
       <el-form-item label="登录地址" prop="ipaddr">
         <el-input
           v-model="queryParams.ipaddr"
           placeholder="请输入登录地址"
           clearable
-          style="width: 240px"
+          style="width: 240px;"
           size="small"
           @keyup.enter.native="handleQuery"
         />
@@ -16,13 +16,19 @@
           v-model="queryParams.userName"
           placeholder="请输入用户名称"
           clearable
-          style="width: 240px"
+          style="width: 240px;"
           size="small"
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
       <el-form-item label="状态" prop="status">
-        <el-select v-model="queryParams.status" placeholder="登录状态" clearable size="small" style="width: 240px">
+        <el-select
+          v-model="queryParams.status"
+          placeholder="登录状态"
+          clearable
+          size="small"
+          style="width: 240px"
+        >
           <el-option
             v-for="dict in statusOptions"
             :key="dict.dictValue"
@@ -52,70 +58,46 @@
     <el-row :gutter="10" class="mb8">
       <el-col :span="1.5">
         <el-button
-          v-hasPermi="['system:logininfor:remove']"
           type="danger"
           plain
           icon="el-icon-delete"
           size="mini"
           :disabled="multiple"
           @click="handleDelete"
-          >删除</el-button
-        >
+          v-hasPermi="['system:logininfor:remove']"
+        >删除</el-button>
       </el-col>
       <el-col :span="1.5">
         <el-button
-          v-hasPermi="['system:logininfor:remove']"
           type="danger"
           plain
           icon="el-icon-delete"
           size="mini"
           @click="handleClean"
-          >清空</el-button
-        >
+          v-hasPermi="['system:logininfor:remove']"
+        >清空</el-button>
       </el-col>
       <el-col :span="1.5">
         <el-button
-          v-hasPermi="['system:logininfor:export']"
           type="warning"
           plain
           icon="el-icon-download"
           size="mini"
           @click="handleExport"
-          >导出</el-button
-        >
+          v-hasPermi="['system:logininfor:export']"
+        >导出</el-button>
       </el-col>
-      <right-toolbar :show-search.sync="showSearch" @queryTable="getList"></right-toolbar>
+      <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
-    <el-table
-      ref="tables"
-      v-loading="loading"
-      :data="list"
-      :default-sort="defaultSort"
-      @selection-change="handleSelectionChange"
-      @sort-change="handleSortChange"
-    >
+    <el-table ref="tables" v-loading="loading" :data="list" @selection-change="handleSelectionChange" :default-sort="defaultSort" @sort-change="handleSortChange">
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="访问编号" align="center" prop="infoId" />
-      <el-table-column
-        label="用户名称"
-        align="center"
-        prop="userName"
-        :show-overflow-tooltip="true"
-        sortable="custom"
-        :sort-orders="['descending', 'ascending']"
-      />
+      <el-table-column label="用户名称" align="center" prop="userName" :show-overflow-tooltip="true" sortable="custom" :sort-orders="['descending', 'ascending']" />
       <el-table-column label="地址" align="center" prop="ipaddr" width="130" :show-overflow-tooltip="true" />
       <el-table-column label="状态" align="center" prop="status" :formatter="statusFormat" />
       <el-table-column label="描述" align="center" prop="msg" />
-      <el-table-column
-        label="访问时间"
-        align="center"
-        prop="accessTime"
-        sortable="custom"
-        :sort-orders="['descending', 'ascending']"
-        width="180"
-      >
+      <el-table-column label="访问时间" align="center" prop="accessTime" sortable="custom" :sort-orders="['descending', 'ascending']" width="180">
         <template slot-scope="scope">
           <span>{{ parseTime(scope.row.accessTime) }}</span>
         </template>
@@ -123,7 +105,7 @@
     </el-table>
 
     <pagination
-      v-show="total > 0"
+      v-show="total>0"
       :total="total"
       :page.sync="queryParams.pageNum"
       :limit.sync="queryParams.pageSize"
@@ -133,10 +115,10 @@
 </template>
 
 <script>
-import { list, delLogininfor, cleanLogininfor } from '@/api/system/logininfor'
+import { list, delLogininfor, cleanLogininfor } from "@/api/system/logininfor";
 
 export default {
-  name: 'Logininfor',
+  name: "Logininfor",
   data() {
     return {
       // 遮罩层
@@ -156,103 +138,95 @@ export default {
       // 日期范围
       dateRange: [],
       // 默认排序
-      defaultSort: { prop: 'loginTime', order: 'descending' },
+      defaultSort: {prop: 'loginTime', order: 'descending'},
       // 查询参数
       queryParams: {
         pageNum: 1,
         pageSize: 10,
         ipaddr: undefined,
         userName: undefined,
-        status: undefined,
-      },
-    }
+        status: undefined
+      }
+    };
   },
   created() {
-    this.getList()
-    this.getDicts('sys_common_status').then((response) => {
-      this.statusOptions = response.data
-    })
+    this.getList();
+    this.getDicts("sys_common_status").then(response => {
+      this.statusOptions = response.data;
+    });
   },
   methods: {
     /** 查询登录日志列表 */
     getList() {
-      this.loading = true
-      list(this.addDateRange(this.queryParams, this.dateRange)).then((response) => {
-        this.list = response.rows
-        this.total = response.total
-        this.loading = false
-      })
+      this.loading = true;
+      list(this.addDateRange(this.queryParams, this.dateRange)).then(response => {
+          this.list = response.rows;
+          this.total = response.total;
+          this.loading = false;
+        }
+      );
     },
     // 登录状态字典翻译
     statusFormat(row, column) {
-      return this.selectDictLabel(this.statusOptions, row.status)
+      return this.selectDictLabel(this.statusOptions, row.status);
     },
     /** 搜索按钮操作 */
     handleQuery() {
-      this.queryParams.pageNum = 1
-      this.getList()
+      this.queryParams.pageNum = 1;
+      this.getList();
     },
     /** 重置按钮操作 */
     resetQuery() {
-      this.dateRange = []
-      this.resetForm('queryForm')
+      this.dateRange = [];
+      this.resetForm("queryForm");
       this.$refs.tables.sort(this.defaultSort.prop, this.defaultSort.order)
-      this.handleQuery()
+      this.handleQuery();
     },
     /** 多选框选中数据 */
     handleSelectionChange(selection) {
-      this.ids = selection.map((item) => item.infoId)
+      this.ids = selection.map(item => item.infoId)
       this.multiple = !selection.length
     },
     /** 排序触发事件 */
     handleSortChange(column, prop, order) {
-      this.queryParams.orderByColumn = column.prop
-      this.queryParams.isAsc = column.order
-      this.getList()
+      this.queryParams.orderByColumn = column.prop;
+      this.queryParams.isAsc = column.order;
+      this.getList();
     },
     /** 删除按钮操作 */
     handleDelete(row) {
-      const infoIds = row.infoId || this.ids
-      this.$confirm('是否确认删除访问编号为"' + infoIds + '"的数据项?', '警告', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning',
-      })
-        .then(function () {
-          return delLogininfor(infoIds)
-        })
-        .then(() => {
-          this.getList()
-          this.msgSuccess('删除成功')
-        })
-        .catch(() => {})
+      const infoIds = row.infoId || this.ids;
+      this.$confirm('是否确认删除访问编号为"' + infoIds + '"的数据项?', "警告", {
+          confirmButtonText: "确定",
+          cancelButtonText: "取消",
+          type: "warning"
+        }).then(function() {
+          return delLogininfor(infoIds);
+        }).then(() => {
+          this.getList();
+          this.msgSuccess("删除成功");
+        }).catch(() => {});
     },
     /** 清空按钮操作 */
     handleClean() {
-      this.$confirm('是否确认清空所有登录日志数据项?', '警告', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning',
-      })
-        .then(function () {
-          return cleanLogininfor()
-        })
-        .then(() => {
-          this.getList()
-          this.msgSuccess('清空成功')
-        })
-        .catch(() => {})
+        this.$confirm('是否确认清空所有登录日志数据项?', "警告", {
+          confirmButtonText: "确定",
+          cancelButtonText: "取消",
+          type: "warning"
+        }).then(function() {
+          return cleanLogininfor();
+        }).then(() => {
+          this.getList();
+          this.msgSuccess("清空成功");
+        }).catch(() => {});
     },
     /** 导出按钮操作 */
     handleExport() {
-      this.download(
-        'system/logininfor/export',
-        {
-          ...this.queryParams,
-        },
-        `logininfor_${new Date().getTime()}.xlsx`
-      )
-    },
-  },
-}
+      this.download('system/logininfor/export', {
+        ...this.queryParams
+      }, `logininfor_${new Date().getTime()}.xlsx`)
+    }
+  }
+};
 </script>
+

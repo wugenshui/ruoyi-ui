@@ -2,7 +2,7 @@
  * ESLint 检查配置文件
  * 属性参考：https://eslint.org/docs/rules/
  */
-module.exports = {
+ module.exports = {
   root: true,
   parserOptions: {
     parser: 'babel-eslint',
@@ -85,8 +85,7 @@ module.exports = {
     'eol-last': 2,
     // 文件最大代码行数
     'max-lines': ['warn', { max: 1800 }],
-    // === 替代 ==
-    eqeqeq: ['warn', 'always', { null: 'ignore' }],
+    eqeqeq: ['error', 'always', { null: 'ignore' }],
     'generator-star-spacing': [
       2,
       {

@@ -34,24 +34,24 @@ export const constantRoutes = [
     children: [
       {
         path: '/redirect/:path(.*)',
-        component: (resolve) => require(['@/views/redirect'], resolve),
-      },
-    ],
+        component: (resolve) => require(['@/views/redirect'], resolve)
+      }
+    ]
   },
   {
     path: '/login',
     component: (resolve) => require(['@/views/login'], resolve),
-    hidden: true,
+    hidden: true
   },
   {
     path: '/404',
     component: (resolve) => require(['@/views/error/404'], resolve),
-    hidden: true,
+    hidden: true
   },
   {
     path: '/401',
     component: (resolve) => require(['@/views/error/401'], resolve),
-    hidden: true,
+    hidden: true
   },
   {
     path: '',
@@ -62,9 +62,9 @@ export const constantRoutes = [
         path: 'index',
         component: (resolve) => require(['@/views/index'], resolve),
         name: '首页',
-        meta: { title: '首页', icon: 'dashboard', noCache: true, affix: true },
-      },
-    ],
+        meta: { title: '首页', icon: 'dashboard', noCache: true, affix: true }
+      }
+    ]
   },
   {
     path: '/user',
@@ -76,9 +76,9 @@ export const constantRoutes = [
         path: 'profile',
         component: (resolve) => require(['@/views/system/user/profile/index'], resolve),
         name: 'Profile',
-        meta: { title: '个人中心', icon: 'user' },
-      },
-    ],
+        meta: { title: '个人中心', icon: 'user' }
+      }
+    ]
   },
   {
     path: '/system/user-auth',
@@ -89,9 +89,9 @@ export const constantRoutes = [
         path: 'role/:userId(\\d+)',
         component: (resolve) => require(['@/views/system/user/authRole'], resolve),
         name: 'AuthRole',
-        meta: { title: '分配角色', activeMenu: '/system/user' },
-      },
-    ],
+        meta: { title: '分配角色', activeMenu: '/system/user'}
+      }
+    ]
   },
   {
     path: '/system/role-auth',
@@ -102,9 +102,9 @@ export const constantRoutes = [
         path: 'user/:roleId(\\d+)',
         component: (resolve) => require(['@/views/system/role/authUser'], resolve),
         name: 'AuthUser',
-        meta: { title: '分配用户', activeMenu: '/system/role' },
-      },
-    ],
+        meta: { title: '分配用户', activeMenu: '/system/role'}
+      }
+    ]
   },
   {
     path: '/system/dict-data',
@@ -115,9 +115,9 @@ export const constantRoutes = [
         path: 'index/:dictId(\\d+)',
         component: (resolve) => require(['@/views/system/dict/data'], resolve),
         name: 'Data',
-        meta: { title: '字典数据', activeMenu: '/system/dict' },
-      },
-    ],
+        meta: { title: '字典数据', activeMenu: '/system/dict'}
+      }
+    ]
   },
   {
     path: '/monitor/job-log',
@@ -128,9 +128,9 @@ export const constantRoutes = [
         path: 'index',
         component: (resolve) => require(['@/views/monitor/job/log'], resolve),
         name: 'JobLog',
-        meta: { title: '调度日志', activeMenu: '/monitor/job' },
-      },
-    ],
+        meta: { title: '调度日志', activeMenu: '/monitor/job'}
+      }
+    ]
   },
   {
     path: '/tool/gen-edit',
@@ -141,14 +141,14 @@ export const constantRoutes = [
         path: 'index/:tableId(\\d+)',
         component: (resolve) => require(['@/views/tool/gen/editTable'], resolve),
         name: 'GenEdit',
-        meta: { title: '修改生成配置', activeMenu: '/tool/gen' },
-      },
-    ],
-  },
+        meta: { title: '修改生成配置', activeMenu: '/tool/gen'}
+      }
+    ]
+  }
 ]
 
 export default new Router({
   mode: 'history', // 去掉url中的#
   scrollBehavior: () => ({ y: 0 }),
-  routes: constantRoutes,
+  routes: constantRoutes
 })

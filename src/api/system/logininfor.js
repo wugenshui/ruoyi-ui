@@ -5,7 +5,7 @@ export function list(query) {
   return request({
     url: '/system/logininfor/list',
     method: 'get',
-    params: query,
+    params: query
   })
 }
 
@@ -13,7 +13,7 @@ export function list(query) {
 export function delLogininfor(infoId) {
   return request({
     url: '/system/logininfor/' + infoId,
-    method: 'delete',
+    method: 'delete'
   })
 }
 
@@ -21,6 +21,6 @@ export function delLogininfor(infoId) {
 export function cleanLogininfor() {
   return request({
     url: '/system/logininfor/clean',
-    method: 'delete',
+    method: 'delete'
   })
 }

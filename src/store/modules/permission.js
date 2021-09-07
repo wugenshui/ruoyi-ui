@@ -1,7 +1,7 @@
 import { constantRoutes } from '@/router'
 import { getRouters } from '@/api/menu'
 import Layout from '@/layout/index'
-import ParentView from '@/components/ParentView'
+import ParentView from '@/components/ParentView';
 import InnerLink from '@/layout/components/InnerLink'
 
 const permission = {
@@ -10,7 +10,7 @@ const permission = {
     addRoutes: [],
     defaultRoutes: [],
     topbarRouters: [],
-    sidebarRouters: [],
+    sidebarRouters: []
   },
   mutations: {
     SET_ROUTES: (state, routes) => {
@@ -22,13 +22,11 @@ const permission = {
     },
     SET_TOPBAR_ROUTES: (state, routes) => {
       // 顶部导航菜单默认添加统计报表栏指向首页
-      const index = [
-        {
-          path: 'index',
-          meta: { title: '统计报表', icon: 'dashboard' },
-        },
-      ]
-      state.topbarRouters = routes.concat(index)
+      const index = [{
+        path: 'index',
+        meta: { title: '统计报表', icon: 'dashboard'}
+      }]
+      state.topbarRouters = routes.concat(index);
     },
     SET_SIDEBAR_ROUTERS: (state, routes) => {
       state.sidebarRouters = routes
@@ -37,9 +35,9 @@ const permission = {
   actions: {
     // 生成路由
     GenerateRoutes({ commit }) {
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         // 向后端请求路由数据
-        getRouters().then((res) => {
+        getRouters().then(res => {
           const sdata = JSON.parse(JSON.stringify(res.data))
           const rdata = JSON.parse(JSON.stringify(res.data))
           const sidebarRoutes = filterAsyncRouter(sdata)
@@ -52,13 +50,13 @@ const permission = {
           resolve(rewriteRoutes)
         })
       })
-    },
-  },
+    }
+  }
 }
 
 // 遍历后台传来的路由字符串，转换为组件对象
 function filterAsyncRouter(asyncRouterMap, lastRouter = false, type = false) {
-  return asyncRouterMap.filter((route) => {
+  return asyncRouterMap.filter(route => {
     if (type && route.children) {
       route.children = filterChildren(route.children)
     }
@@ -89,7 +87,7 @@ function filterChildren(childrenMap, lastRouter = false) {
   childrenMap.forEach((el, index) => {
     if (el.children && el.children.length) {
       if (el.component === 'ParentView') {
-        el.children.forEach((c) => {
+        el.children.forEach(c => {
           c.path = el.path + '/' + c.path
           if (c.children && c.children.length) {
             children = children.concat(filterChildren(c.children, c))
@@ -108,8 +106,7 @@ function filterChildren(childrenMap, lastRouter = false) {
   return children
 }
 
-export const loadView = (view) => {
-  // 路由懒加载
+export const loadView = (view) => { // 路由懒加载
   return (resolve) => require([`@/views/${view}`], resolve)
 }
 
