@@ -1,19 +1,23 @@
-// ESlint 检查配置
-module.exports = {
+/**
+ * ESLint 检查配置文件
+ * 属性参考：https://eslint.org/docs/rules/
+ */
+ module.exports = {
   root: true,
   parserOptions: {
     parser: 'babel-eslint',
-    sourceType: 'module'
+    sourceType: 'module',
   },
   env: {
     browser: true,
     node: true,
-    es6: true
+    es6: true,
   },
   globals: {
-    AMap: true
+    // 定义全局变量，例如jquery，防止no-undef报错
+    AMap: true,
   },
-  extends: ['plugin:vue/recommended', 'eslint:recommended', '@vue/prettier'],
+  extends: ['plugin:vue/essential', 'plugin:vue/recommended', 'eslint:recommended', '@vue/prettier'],
 
   /**
    * 自定义规则配置
@@ -21,7 +25,6 @@ module.exports = {
    * "off"   = 0 = 关闭规则
    * "warn"  = 1 = 将规则打开为警告（不影响退出代码）
    * "error" = 2 = 将规则打开为错误（触发时退出代码为1）
-   *
    */
   rules: {
     'vue/max-attributes-per-line': [
@@ -30,86 +33,95 @@ module.exports = {
         singleline: 10,
         multiline: {
           max: 1,
-          allowFirstLine: false
-        }
-      }
+          allowFirstLine: false,
+        },
+      },
     ],
     'vue/singleline-html-element-content-newline': 'off',
     'vue/multiline-html-element-content-newline': 'off',
     'vue/name-property-casing': ['error', 'PascalCase'],
+    // 禁用 prop需要设置default属性
+    'vue/require-default-prop': 'off',
     'vue/no-v-html': 'off',
+    // 需要为每个定义了 setter 的属性设置一个 getter
     'accessor-pairs': 2,
+    // 变量在定义块的外部使用时，规则会生成警告
+    'block-scoped-var': 'warn',
     'arrow-spacing': [
       2,
       {
         before: true,
-        after: true
-      }
+        after: true,
+      },
     ],
     'block-spacing': [2, 'always'],
     'brace-style': [
       2,
       '1tbs',
       {
-        allowSingleLine: true
-      }
+        allowSingleLine: true,
+      },
     ],
+    // 小驼峰命名
     camelcase: [
-      0,
+      'warn',
       {
-        properties: 'always'
-      }
+        properties: 'always',
+      },
     ],
-    'comma-dangle': [2, 'never'],
+    // 代码复杂度
+    complexity: ['warn', { max: 15 }],
     'comma-spacing': [
       2,
       {
         before: false,
-        after: true
-      }
+        after: true,
+      },
     ],
     'comma-style': [2, 'last'],
     'constructor-super': 2,
     curly: [2, 'multi-line'],
     'dot-location': [2, 'property'],
     'eol-last': 2,
+    // 文件最大代码行数
+    'max-lines': ['warn', { max: 1800 }],
     eqeqeq: ['error', 'always', { null: 'ignore' }],
     'generator-star-spacing': [
       2,
       {
         before: true,
-        after: true
-      }
+        after: true,
+      },
     ],
     'handle-callback-err': [2, '^(err|error)$'],
     indent: [
       2,
       2,
       {
-        SwitchCase: 1
-      }
+        SwitchCase: 1,
+      },
     ],
     'jsx-quotes': [2, 'prefer-single'],
     'key-spacing': [
       2,
       {
         beforeColon: false,
-        afterColon: true
-      }
+        afterColon: true,
+      },
     ],
     'keyword-spacing': [
       2,
       {
         before: true,
-        after: true
-      }
+        after: true,
+      },
     ],
     'new-cap': [
       2,
       {
         newIsCap: true,
-        capIsNew: false
-      }
+        capIsNew: false,
+      },
     ],
     'new-parens': 2,
     'no-array-constructor': 2,
@@ -145,8 +157,8 @@ module.exports = {
       2,
       {
         allowLoop: false,
-        allowSwitch: false
-      }
+        allowSwitch: false,
+      },
     ],
     'no-lone-blocks': 2,
     'no-mixed-spaces-and-tabs': 2,
@@ -155,8 +167,8 @@ module.exports = {
     'no-multiple-empty-lines': [
       2,
       {
-        max: 1
-      }
+        max: 1,
+      },
     ],
     'no-native-reassign': 2,
     'no-negated-in-lhs': 2,
@@ -188,8 +200,8 @@ module.exports = {
     'no-unneeded-ternary': [
       2,
       {
-        defaultAssignment: false
-      }
+        defaultAssignment: false,
+      },
     ],
     'no-unreachable': 2,
     'no-unsafe-finally': 2,
@@ -197,8 +209,8 @@ module.exports = {
       2,
       {
         vars: 'all',
-        args: 'none'
-      }
+        args: 'none',
+      },
     ],
     'no-useless-call': 2,
     'no-useless-computed-key': 2,
@@ -209,8 +221,8 @@ module.exports = {
     'one-var': [
       2,
       {
-        initialized: 'never'
-      }
+        initialized: 'never',
+      },
     ],
     'operator-linebreak': [
       2,
@@ -218,9 +230,9 @@ module.exports = {
       {
         overrides: {
           '?': 'before',
-          ':': 'before'
-        }
-      }
+          ':': 'before',
+        },
+      },
     ],
     'padded-blocks': [2, 'never'],
     quotes: [
@@ -228,16 +240,16 @@ module.exports = {
       'single',
       {
         avoidEscape: true,
-        allowTemplateLiterals: true
-      }
+        allowTemplateLiterals: true,
+      },
     ],
     semi: [2, 'never'],
     'semi-spacing': [
       2,
       {
         before: false,
-        after: true
-      }
+        after: true,
+      },
     ],
     'space-before-blocks': [2, 'always'],
     'space-before-function-paren': [2, 'never'],
@@ -247,15 +259,15 @@ module.exports = {
       2,
       {
         words: true,
-        nonwords: false
-      }
+        nonwords: false,
+      },
     ],
     'spaced-comment': [
       2,
       'always',
       {
-        markers: ['global', 'globals', 'eslint', 'eslint-disable', '*package', '!', ',']
-      }
+        markers: ['global', 'globals', 'eslint', 'eslint-disable', '*package', '!', ','],
+      },
     ],
     'template-curly-spacing': [2, 'never'],
     'use-isnan': 2,
@@ -269,9 +281,10 @@ module.exports = {
       2,
       'always',
       {
-        objectsInObjects: false
-      }
+        objectsInObjects: false,
+      },
     ],
-    'array-bracket-spacing': [2, 'never']
-  }
+    // 强制在数组方法的回调中使用return语句
+    'array-callback-return': 'error',
+  },
 }
