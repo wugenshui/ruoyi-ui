@@ -2,7 +2,7 @@
  * ESLint 检查配置文件
  * 属性参考：https://eslint.org/docs/rules/
  */
- module.exports = {
+module.exports = {
   root: true,
   parserOptions: {
     parser: 'babel-eslint',
@@ -17,7 +17,7 @@
     // 定义全局变量，例如jquery，防止no-undef报错
     AMap: true,
   },
-  extends: ['plugin:vue/essential', 'plugin:vue/recommended', 'eslint:recommended', '@vue/prettier'],
+  extends: ['plugin:vue/essential', 'eslint:recommended', '@vue/prettier'],
 
   /**
    * 自定义规则配置
@@ -85,7 +85,8 @@
     'eol-last': 2,
     // 文件最大代码行数
     'max-lines': ['warn', { max: 1800 }],
-    eqeqeq: ['error', 'always', { null: 'ignore' }],
+    // === 替代 ==
+    eqeqeq: ['warn', 'always', { null: 'ignore' }],
     'generator-star-spacing': [
       2,
       {
@@ -252,7 +253,6 @@
       },
     ],
     'space-before-blocks': [2, 'always'],
-    'space-before-function-paren': [2, 'never'],
     'space-in-parens': [2, 'never'],
     'space-infix-ops': 2,
     'space-unary-ops': [
