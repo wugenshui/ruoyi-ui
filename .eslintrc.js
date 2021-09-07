@@ -27,10 +27,11 @@ module.exports = {
    * "error" = 2 = 将规则打开为错误（触发时退出代码为1）
    */
   rules: {
+    // 模板元素多属性配置
     'vue/max-attributes-per-line': [
       2,
       {
-        singleline: 10,
+        singleline: 8,
         multiline: {
           max: 1,
           allowFirstLine: false,
@@ -263,7 +264,7 @@ module.exports = {
       },
     ],
     'spaced-comment': [
-      2,
+      1,
       'always',
       {
         markers: ['global', 'globals', 'eslint', 'eslint-disable', '*package', '!', ','],

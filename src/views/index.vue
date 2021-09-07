@@ -5,33 +5,21 @@
         <blockquote class="text-warning" style="font-size: 14px">
           领取阿里云通用云产品1888优惠券
           <br />
-          <el-link
-            href="https://www.aliyun.com/minisite/goods?userCode=brki8iof"
-            type="primary"
-            target="_blank"
-            >https://www.aliyun.com/minisite/goods?userCode=brki8iof</el-link
-          >
+          <el-link href="https://www.aliyun.com/minisite/goods?userCode=brki8iof" type="primary" target="_blank">
+            https://www.aliyun.com/minisite/goods?userCode=brki8iof
+          </el-link>
           <br />
           领取腾讯云通用云产品2860优惠券
           <br />
-          <el-link
-            href="https://cloud.tencent.com/redirect.php?redirect=1025&cps_key=198c8df2ed259157187173bc7f4f32fd&from=console"
-            type="primary"
-            target="_blank"
-            >https://cloud.tencent.com/redirect.php?redirect=1025&cps_key=198c8df2ed259157187173bc7f4f32fd&from=console</el-link
-          >
+          <el-link href="https://cloud.tencent.com/redirect.php" type="primary" target="_blank">
+            https://cloud.tencent.com/redirect.php
+          </el-link>
           <br />
           阿里云服务器折扣区
-          <el-link href="http://aly.ruoyi.vip" type="primary" target="_blank"
-            >>☛☛点我进入☚☚</el-link
-          >
+          <el-link href="http://aly.ruoyi.vip" type="primary" target="_blank">>☛☛点我进入☚☚</el-link>
           &nbsp;&nbsp;&nbsp; 腾讯云服务器秒杀区
-          <el-link href="http://txy.ruoyi.vip" type="primary" target="_blank"
-            >>☛☛点我进入☚☚</el-link
-          ><br />
-          <h4 class="text-danger">
-            云产品通用红包，可叠加官网常规优惠使用。(仅限新用户)
-          </h4>
+          <el-link href="http://txy.ruoyi.vip" type="primary" target="_blank">>☛☛点我进入☚☚</el-link><br />
+          <h4 class="text-danger">云产品通用红包，可叠加官网常规优惠使用。(仅限新用户)</h4>
         </blockquote>
 
         <hr />
@@ -58,13 +46,7 @@
             @click="goTarget('https://gitee.com/y_project/RuoYi-Cloud')"
             >访问码云</el-button
           >
-          <el-button
-            size="mini"
-            icon="el-icon-s-home"
-            plain
-            @click="goTarget('http://ruoyi.vip')"
-            >访问主页</el-button
-          >
+          <el-button size="mini" icon="el-icon-s-home" plain @click="goTarget('http://ruoyi.vip')">访问主页</el-button>
         </p>
       </el-col>
 
@@ -111,32 +93,16 @@
           </div>
           <div class="body">
             <p>
-              <i class="el-icon-s-promotion"></i> 官网：<el-link
-                href="http://www.ruoyi.vip"
-                target="_blank"
-                >http://www.ruoyi.vip</el-link
-              >
+              <i class="el-icon-s-promotion"></i> 官网：
+              <el-link href="http://www.ruoyi.vip" target="_blank">http://www.ruoyi.vip</el-link>
             </p>
             <p>
-              <i class="el-icon-user-solid"></i> QQ群：<s>满42799195</s>
-              <s>满170157040</s> <s>满130643120</s> <s>满225920371</s>
-              <a href="https://jq.qq.com/?_wv=1027&k=Kg9CdVdx" target="_blank">
-                201705537</a
-              >
+              <i class="el-icon-user-solid"></i> QQ群：<s>满42799195</s> <s>满170157040</s> <s>满130643120</s>
+              <s>满225920371</s>
+              <a href="https://jq.qq.com/?_wv=1027&k=Kg9CdVdx" target="_blank"> 201705537</a>
             </p>
-            <p>
-              <i class="el-icon-chat-dot-round"></i> 微信：<a
-                href="javascript:;"
-                >/ *若依</a
-              >
-            </p>
-            <p>
-              <i class="el-icon-money"></i> 支付宝：<a
-                href="javascript:;"
-                class="支付宝信息"
-                >/ *若依</a
-              >
-            </p>
+            <p><i class="el-icon-chat-dot-round"></i> 微信：<a href="javascript:;">/ *若依</a></p>
+            <p><i class="el-icon-money"></i> 支付宝：<a href="javascript:;" class="支付宝信息">/ *若依</a></p>
           </div>
         </el-card>
       </el-col>
@@ -351,9 +317,7 @@
                 <li>网关白名单放入nacos配置&支持模糊匹配</li>
                 <li>修复富文本工具栏样式不对齐问题</li>
                 <li>Editor组件优化，支持自定义高度&图片冲突问题</li>
-                <li>
-                  修复富文本空格和缩进保存后不生效问题&删除重复的placeholder
-                </li>
+                <li>修复富文本空格和缩进保存后不生效问题&删除重复的placeholder</li>
                 <li>限制系统内置参数不允许删除</li>
                 <li>修正调用目标字符串最大长度</li>
                 <li>修改自定义权限实现</li>
@@ -407,9 +371,7 @@
                 <li>代码生成浮点型改用BigDecimal</li>
                 <li>表单类型为Integer/Long设置整形默认值</li>
                 <li>修改用户管理复选框宽度，防止部分浏览器出现省略号</li>
-                <li>
-                  RedisCache中所有方法参数添加final，并优化list取出效率，添加其它常用redis方法
-                </li>
+                <li>RedisCache中所有方法参数添加final，并优化list取出效率，添加其它常用redis方法</li>
                 <li>修正定时任务日志权限字符</li>
                 <li>添加Jackson时区配置</li>
                 <li>代码生成相关问题修复</li>
@@ -463,9 +425,7 @@
                 <li>支持一级菜单（和主页同级）在main区域显示</li>
                 <li>限制外链地址必须以http(s)😕/开头</li>
                 <li>tagview & sidebar 主题颜色与element ui(全局)同步</li>
-                <li>
-                  修复dict_sort不可update为0的问题&查询返回增加dict_sort升序排序
-                </li>
+                <li>修复dict_sort不可update为0的问题&查询返回增加dict_sort升序排序</li>
                 <li>权限部分代码调整</li>
                 <li>其他细节优化</li>
               </ol>
@@ -489,9 +449,7 @@
               alt="donate"
               width="100%"
             />
-            <span style="display: inline-block; height: 30px; line-height: 30px"
-              >你可以请作者喝杯咖啡表示鼓励</span
-            >
+            <span style="display: inline-block; height: 30px; line-height: 30px">你可以请作者喝杯咖啡表示鼓励</span>
           </div>
         </el-card>
       </el-col>
@@ -501,19 +459,19 @@
 
 <script>
 export default {
-  name: "index",
+  name: 'Index',
   data() {
     return {
       // 版本号
-      version: "3.0.0",
-    };
+      version: '3.0.0',
+    }
   },
   methods: {
     goTarget(href) {
-      window.open(href, "_blank");
+      window.open(href, '_blank')
     },
   },
-};
+}
 </script>
 
 <style scoped lang="scss">
@@ -539,7 +497,7 @@ export default {
     margin: 0;
   }
 
-  font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'open sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 13px;
   color: #676a6c;
   overflow-x: hidden;
@@ -579,4 +537,3 @@ export default {
   }
 }
 </style>
-
