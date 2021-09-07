@@ -66,12 +66,15 @@
     "@vue/cli-plugin-babel": "4.4.6",
     "@vue/cli-plugin-eslint": "4.4.6",
     "@vue/cli-service": "4.4.6",
+    "@vue/eslint-config-prettier": "^6.0.0",
     "babel-eslint": "10.1.0",
     "chalk": "4.1.0",
     "connect": "3.6.6",
     "eslint": "7.15.0",
+    "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "7.2.0",
     "lint-staged": "10.5.3",
+    "prettier": "^2.2.1",
     "runjs": "4.4.2",
     "sass": "1.32.0",
     "sass-loader": "10.1.0",
@@ -85,6 +88,7 @@
   },
   "browserslist": [
     "> 1%",
-    "last 2 versions"
+    "last 2 versions",
+    "not dead"
   ]
 }
