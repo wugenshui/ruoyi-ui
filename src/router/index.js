@@ -65,12 +65,6 @@ export const constantRoutes = [
         name: '首页',
         meta: { title: '首页', icon: 'dashboard', noCache: true, affix: true },
       },
-      {
-        path: 'index1',
-        component: (resolve) => require(['@/views/index_v1'], resolve),
-        name: '首页1',
-        meta: { title: '首页1', icon: 'dashboard', noCache: true, affix: true },
-      },
     ],
   },
   {
