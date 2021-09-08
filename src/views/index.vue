@@ -2,7 +2,7 @@
   <div class="dashboard-editor-container">
     <panel-group @handleSetLineChartData="handleSetLineChartData" />
 
-    <el-row style="background: #fff; padding: 16px 16px 0; margin-bottom: 32px">
+    <el-row style="background: #fff; padding: 16px 16px 0; margin-bottom: 10px">
       <line-chart :chart-data="lineChartData" />
     </el-row>
 
@@ -76,14 +76,14 @@ export default {
 
 <style lang="scss" scoped>
 .dashboard-editor-container {
-  padding: 32px;
+  padding: 10px;
   background-color: rgb(240, 242, 245);
   position: relative;
 
   .chart-wrapper {
     background: #fff;
     padding: 16px 16px 0;
-    margin-bottom: 32px;
+    margin-bottom: 10px;
   }
 }
 
