@@ -271,7 +271,7 @@ module.exports = {
       2,
       'always',
       {
-        objectsInObjects: false,
+        objectsInObjects: true,
       },
     ],
     // 强制在数组方法的回调中使用return语句
