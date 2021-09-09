@@ -105,9 +105,9 @@ export function download(fileName) {
 
 // 字符串格式化(%s )
 export function sprintf(str) {
-  var args = arguments,
-    flag = true,
-    i = 1
+  var args = arguments
+  var flag = true
+  var i = 1
   str = str.replace(/%s/g, function () {
     var arg = args[i++]
     if (typeof arg === 'undefined') {
