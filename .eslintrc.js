@@ -27,17 +27,6 @@ module.exports = {
    * "error" = 2 = 将规则打开为错误（触发时退出代码为1）
    */
   rules: {
-    // 模板元素多属性配置
-    'vue/max-attributes-per-line': [
-      2,
-      {
-        singleline: 8,
-        multiline: {
-          max: 1,
-          allowFirstLine: false,
-        },
-      },
-    ],
     'vue/singleline-html-element-content-newline': 0,
     'vue/multiline-html-element-content-newline': 0,
     'vue/name-property-casing': [2, 'PascalCase'],
