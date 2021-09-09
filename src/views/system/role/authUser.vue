@@ -135,7 +135,7 @@ export default {
   created() {
     const roleId = this.$route.params && this.$route.params.roleId
     if (roleId) {
-      this.queryParams.roleId = roleId
+      this.queryParams.roleId = parseInt(roleId)
       this.getList()
       this.getDicts('sys_normal_disable').then((response) => {
         this.statusOptions = response.data
