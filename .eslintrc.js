@@ -38,16 +38,17 @@ module.exports = {
         },
       },
     ],
-    'vue/singleline-html-element-content-newline': 'off',
-    'vue/multiline-html-element-content-newline': 'off',
-    'vue/name-property-casing': ['error', 'PascalCase'],
+    'vue/singleline-html-element-content-newline': 0,
+    'vue/multiline-html-element-content-newline': 0,
+    'vue/name-property-casing': [2, 'PascalCase'],
+    'vue/no-mutating-props': 0,
     // 禁用 prop需要设置default属性
-    'vue/require-default-prop': 'off',
-    'vue/no-v-html': 'off',
+    'vue/require-default-prop': 0,
+    'vue/no-v-html': 0,
     // 需要为每个定义了 setter 的属性设置一个 getter
     'accessor-pairs': 2,
     // 变量在定义块的外部使用时，规则会生成警告
-    'block-scoped-var': 'warn',
+    'block-scoped-var': 1,
     'arrow-spacing': [
       2,
       {
@@ -65,13 +66,13 @@ module.exports = {
     ],
     // 小驼峰命名
     camelcase: [
-      'warn',
+      1,
       {
         properties: 'always',
       },
     ],
     // 代码复杂度
-    complexity: ['warn', { max: 15 }],
+    complexity: [1, { max: 15 }],
     'comma-spacing': [
       2,
       {
@@ -85,9 +86,9 @@ module.exports = {
     'dot-location': [2, 'property'],
     'eol-last': 2,
     // 文件最大代码行数
-    'max-lines': ['warn', { max: 1800 }],
+    'max-lines': [1, { max: 1800 }],
     // === 替代 ==
-    eqeqeq: ['warn', 'always', { null: 'ignore' }],
+    eqeqeq: [1, 'always', { null: 'ignore' }],
     'generator-star-spacing': [
       2,
       {
@@ -128,7 +129,7 @@ module.exports = {
     'new-parens': 2,
     'no-array-constructor': 2,
     'no-caller': 2,
-    'no-console': 'off',
+    'no-console': 0,
     'no-class-assign': 2,
     'no-cond-assign': 2,
     'no-const-assign': 2,
@@ -276,7 +277,6 @@ module.exports = {
     'wrap-iife': [2, 'any'],
     'yield-star-spacing': [2, 'both'],
     yoda: [2, 'never'],
-    'prefer-const': 2,
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
     'object-curly-spacing': [
       2,
@@ -286,6 +286,6 @@ module.exports = {
       },
     ],
     // 强制在数组方法的回调中使用return语句
-    'array-callback-return': 'error',
+    'array-callback-return': 2,
   },
 }

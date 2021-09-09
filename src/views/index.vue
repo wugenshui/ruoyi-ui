@@ -1,23 +1,29 @@
+<!-- 首页 统计 -->
 <template>
   <div class="dashboard-editor-container">
+    <!-- 四个指标 -->
     <panel-group @handleSetLineChartData="handleSetLineChartData" />
 
+    <!-- 折线图：指标变动 -->
     <el-row style="background: #fff; padding: 16px 16px 0; margin-bottom: 10px">
       <line-chart :chart-data="lineChartData" />
     </el-row>
 
     <el-row :gutter="32">
       <el-col :xs="24" :sm="24" :lg="8">
+        <!-- 雷达图 -->
         <div class="chart-wrapper">
           <raddar-chart />
         </div>
       </el-col>
       <el-col :xs="24" :sm="24" :lg="8">
         <div class="chart-wrapper">
+          <!-- 派图 -->
           <pie-chart />
         </div>
       </el-col>
       <el-col :xs="24" :sm="24" :lg="8">
+        <!-- 直方图 -->
         <div class="chart-wrapper">
           <bar-chart />
         </div>
@@ -76,6 +82,7 @@ export default {
 
 <style lang="scss" scoped>
 .dashboard-editor-container {
+  height: 100%;
   padding: 10px;
   background-color: rgb(240, 242, 245);
   position: relative;
