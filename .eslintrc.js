@@ -53,13 +53,6 @@ module.exports = {
         allowSingleLine: true,
       },
     ],
-    // 小驼峰命名
-    camelcase: [
-      1,
-      {
-        properties: 'always',
-      },
-    ],
     // 代码复杂度
     complexity: [1, { max: 15 }],
     'comma-spacing': [
@@ -172,6 +165,7 @@ module.exports = {
     'no-octal-escape': 2,
     'no-path-concat': 2,
     'no-proto': 2,
+    'no-prototype-builtins': 0,
     'no-redeclare': 2,
     'no-regex-spaces': 2,
     'no-return-assign': [2, 'except-parens'],
@@ -264,7 +258,7 @@ module.exports = {
     'valid-typeof': 2,
     'wrap-iife': [2, 'any'],
     'yield-star-spacing': [2, 'both'],
-    yoda: [2, 'never'],
+    // yoda: [2, 'never'],
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
     'object-curly-spacing': [
       2,
