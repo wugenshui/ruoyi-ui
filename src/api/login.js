@@ -5,7 +5,7 @@ export function login(username, password, code, uuid) {
   return request({
     url: '/auth/login',
     method: 'post',
-    data: { username, password, code, uuid }
+    data: { username, password, code, uuid },
   })
 }
 
@@ -13,7 +13,7 @@ export function login(username, password, code, uuid) {
 export function refreshToken() {
   return request({
     url: '/auth/refresh',
-    method: 'post'
+    method: 'post',
   })
 }
 
@@ -21,7 +21,7 @@ export function refreshToken() {
 export function getInfo() {
   return request({
     url: '/system/user/getInfo',
-    method: 'get'
+    method: 'get',
   })
 }
 
@@ -29,7 +29,7 @@ export function getInfo() {
 export function logout() {
   return request({
     url: '/auth/logout',
-    method: 'delete'
+    method: 'delete',
   })
 }
 
@@ -37,6 +37,6 @@ export function logout() {
 export function getCodeImg() {
   return request({
     url: '/code',
-    method: 'get'
+    method: 'get',
   })
 }
