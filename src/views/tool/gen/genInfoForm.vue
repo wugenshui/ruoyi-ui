@@ -231,7 +231,9 @@ export default {
     },
     menus: {
       type: Array,
-      default: [],
+      default: () => {
+        return []
+      },
     },
   },
   data() {

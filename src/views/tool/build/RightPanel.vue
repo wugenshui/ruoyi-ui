@@ -478,7 +478,7 @@ import draggable from 'vuedraggable'
 import TreeNodeDialog from './TreeNodeDialog'
 import { isNumberStr } from '@/utils/index'
 import IconsDialog from './IconsDialog'
-import { inputComponents, selectComponents, layoutComponents } from '@/utils/generator/config'
+import { inputComponents, selectComponents } from '@/utils/generator/config'
 
 const dateTimeFormat = {
   date: 'yyyy-MM-dd',
