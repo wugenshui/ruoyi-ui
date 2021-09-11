@@ -39,7 +39,8 @@ export default {
     // 顶部显示菜单
     topMenus() {
       let topMenus = []
-      this.routers.map((menu) => {
+      this.routers.forEach((menu) => {
+        console.log(menu.hidden)
         if (menu.hidden !== true) {
           // 兼容顶部栏一级菜单内部跳转
           if (menu.path === '/') {
@@ -58,7 +59,7 @@ export default {
     // 设置子路由
     childrenMenus() {
       var childrenMenus = []
-      this.routers.map((router) => {
+      this.routers.forEach((router) => {
         for (var item in router.children) {
           if (router.children[item].parentPath === undefined) {
             if (router.path === '/') {
@@ -83,11 +84,7 @@ export default {
         const tmpPath = path.substring(1, path.length)
         activePath = '/' + tmpPath.substring(0, tmpPath.indexOf('/'))
       } else if ('/index' === path || '' === path) {
-        if (!this.isFrist) {
-          this.isFrist = true
-        } else {
-          activePath = 'index'
-        }
+        activePath = 'index'
       }
       var routes = this.activeRoutes(activePath)
       if (routes.length === 0) {
@@ -115,7 +112,7 @@ export default {
     // 默认激活的路由
     defaultRouter() {
       let router
-      Object.keys(this.routers).some((key) => {
+      Object.keys(this.routers).forEach((key) => {
         if (!this.routers[key].hidden) {
           router = this.routers[key].path
           return true
@@ -141,7 +138,7 @@ export default {
     activeRoutes(key) {
       var routes = []
       if (this.childrenMenus && this.childrenMenus.length > 0) {
-        this.childrenMenus.map((item) => {
+        this.childrenMenus.forEach((item) => {
           if (key === item.parentPath || (key === 'index' && '' === item.path)) {
             routes.push(item)
           }
