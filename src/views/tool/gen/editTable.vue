@@ -1,9 +1,12 @@
+<!-- 修改生成配置 -->
 <template>
   <el-card>
     <el-tabs v-model="activeName">
+      <!-- 基本信息 -->
       <el-tab-pane label="基本信息" name="basic">
         <basic-info-form ref="basicInfo" :info="info" />
       </el-tab-pane>
+      <!-- 字段信息 -->
       <el-tab-pane label="字段信息" name="cloum">
         <el-table ref="dragTable" :data="cloumns" row-key="columnId" :max-height="tableHeight">
           <el-table-column label="序号" type="index" min-width="5%" class-name="allowDrag" />
@@ -103,6 +106,7 @@
           </el-table-column>
         </el-table>
       </el-tab-pane>
+      <!-- 生成信息 -->
       <el-tab-pane label="生成信息" name="genInfo">
         <gen-info-form ref="genInfo" :info="info" :tables="tables" :menus="menus" />
       </el-tab-pane>
@@ -208,7 +212,7 @@ export default {
   },
   mounted() {
     const el = this.$refs.dragTable.$el.querySelectorAll('.el-table__body-wrapper > table > tbody')[0]
-    const sortable = Sortable.create(el, {
+    Sortable.create(el, {
       handle: '.allowDrag',
       onEnd: (evt) => {
         const targetRow = this.cloumns.splice(evt.oldIndex, 1)[0]

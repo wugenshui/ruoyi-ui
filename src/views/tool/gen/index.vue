@@ -1,5 +1,7 @@
+<!-- 代码生成列表 -->
 <template>
   <div class="app-container">
+    <!-- 列表查询条件 -->
     <el-form :model="queryParams" ref="queryForm" :inline="true" v-show="showSearch" label-width="68px">
       <el-form-item label="表名称" prop="tableName">
         <el-input
@@ -37,6 +39,7 @@
       </el-form-item>
     </el-form>
 
+    <!-- 列表控制按钮 -->
     <el-row :gutter="10" class="mb8">
       <el-col :span="1.5">
         <el-button
@@ -87,6 +90,7 @@
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
+    <!-- 列表 -->
     <el-table v-loading="loading" :data="tableList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" align="center" width="55"></el-table-column>
       <el-table-column label="序号" type="index" width="50" align="center">
@@ -144,6 +148,7 @@
         </template>
       </el-table-column>
     </el-table>
+    <!-- 分页组件 -->
     <pagination
       v-show="total > 0"
       :total="total"
@@ -205,7 +210,7 @@ export default {
       // 表数据
       tableList: [],
       // 日期范围
-      dateRange: '',
+      dateRange: [],
       // 查询参数
       queryParams: {
         pageNum: 1,

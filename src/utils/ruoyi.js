@@ -59,7 +59,7 @@ export function resetForm(refName) {
 export function addDateRange(params, dateRange, propName) {
   var search = params
   search.params = {}
-  if (null != dateRange && '' != dateRange) {
+  if (null != dateRange && dateRange.length > 0) {
     if (typeof propName === 'undefined') {
       search.params['beginTime'] = dateRange[0]
       search.params['endTime'] = dateRange[1]
@@ -90,7 +90,7 @@ export function selectDictLabels(datas, value, separator) {
   var temp = value.split(currentSeparator)
   Object.keys(value.split(currentSeparator)).some((val) => {
     Object.keys(datas).some((key) => {
-      if (datas[key].dictValue == '' + temp[val]) {
+      if (datas[key].dictValue === '' + temp[val]) {
         actions.push(datas[key].dictLabel + currentSeparator)
       }
     })
@@ -121,7 +121,7 @@ export function sprintf(str) {
 
 // 转换字符串，undefined,null等转化为""
 export function praseStrEmpty(str) {
-  if (!str || str == 'undefined' || str == 'null') {
+  if (!str || str === 'undefined' || str === 'null') {
     return ''
   }
   return str
