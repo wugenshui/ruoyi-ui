@@ -142,8 +142,8 @@ function buildRules(conf, ruleList) {
     if (conf.regList && isArray(conf.regList)) {
       conf.regList.forEach((item) => {
         if (item.pattern) {
-          console.log('pattern' + item.pattern)
-          rules.push(`{ pattern: ${eval(item.pattern)}, message: '${item.message}', trigger: '${trigger[conf.tag]}' }`)
+          console.log('表达式等于' + item.pattern)
+          rules.push(`{ pattern: ${item.pattern}, message: '${item.message}', trigger: '${trigger[conf.tag]}' }`)
         }
       })
     }
