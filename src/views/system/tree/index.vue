@@ -30,16 +30,11 @@
       </el-form-item>
       <el-form-item label="用户性别" prop="sex">
         <el-select v-model="queryParams.sex" placeholder="请选择用户性别" clearable size="small">
-          <el-option
-            v-for="dict in sexOptions"
-            :key="dict.dictValue"
-            :label="dict.dictLabel"
-            :value="dict.dictValue"
-          />
+          <el-option v-for="dict in sexOptions" :key="dict.dictValue" :label="dict.dictLabel" :value="dict.dictValue" />
         </el-select>
       </el-form-item>
       <el-form-item>
-	    <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
+        <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
         <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
       </el-form-item>
     </el-form>
@@ -53,7 +48,8 @@
           size="mini"
           @click="handleAdd"
           v-hasPermi="['system:tree:add']"
-        >新增</el-button>
+          >新增</el-button
+        >
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
@@ -63,7 +59,7 @@
       :data="treeList"
       row-key="id"
       default-expand-all
-      :tree-props="{children: 'children', hasChildren: 'hasChildren'}"
+      :tree-props="{ children: 'children', hasChildren: 'hasChildren' }"
     >
       <el-table-column label="节点名称" prop="name" />
       <el-table-column label="父id" align="center" prop="pid" />
@@ -77,21 +73,24 @@
             icon="el-icon-edit"
             @click="handleUpdate(scope.row)"
             v-hasPermi="['system:tree:edit']"
-          >修改</el-button>
+            >修改</el-button
+          >
           <el-button
             size="mini"
             type="text"
             icon="el-icon-plus"
             @click="handleAdd(scope.row)"
             v-hasPermi="['system:tree:add']"
-          >新增</el-button>
+            >新增</el-button
+          >
           <el-button
             size="mini"
             type="text"
             icon="el-icon-delete"
             @click="handleDelete(scope.row)"
             v-hasPermi="['system:tree:remove']"
-          >删除</el-button>
+            >删除</el-button
+          >
         </template>
       </el-table-column>
     </el-table>
@@ -128,14 +127,14 @@
 </template>
 
 <script>
-import { listTree, getTree, delTree, addTree, updateTree, exportTree } from "@/api/system/tree";
-import Treeselect from "@riophae/vue-treeselect";
-import "@riophae/vue-treeselect/dist/vue-treeselect.css";
+import { listTree, getTree, delTree, addTree, updateTree } from '@/api/system/tree'
+import Treeselect from '@riophae/vue-treeselect'
+import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 
 export default {
-  name: "Tree",
+  name: 'Tree',
   components: {
-    Treeselect
+    Treeselect,
   },
   data() {
     return {
@@ -148,7 +147,7 @@ export default {
       // 测试树列表树选项
       treeOptions: [],
       // 弹出层标题
-      title: "",
+      title: '',
       // 是否显示弹出层
       open: false,
       // 用户性别字典
@@ -158,64 +157,60 @@ export default {
         name: null,
         pid: null,
         master: null,
-        sex: null
+        sex: null,
       },
       // 表单参数
       form: {},
       // 表单校验
       rules: {
-        name: [
-          { required: true, message: "节点名称不能为空", trigger: "blur" }
-        ],
-        master: [
-          { required: true, message: "机构管理员不能为空", trigger: "blur" }
-        ],
-      }
-    };
+        name: [{ required: true, message: '节点名称不能为空', trigger: 'blur' }],
+        master: [{ required: true, message: '机构管理员不能为空', trigger: 'blur' }],
+      },
+    }
   },
   created() {
-    this.getList();
-    this.getDicts("sys_user_sex").then(response => {
-      this.sexOptions = response.data;
-    });
+    this.getList()
+    this.getDicts('sys_user_sex').then((response) => {
+      this.sexOptions = response.data
+    })
   },
   methods: {
     /** 查询测试树列表列表 */
     getList() {
-      this.loading = true;
-      listTree(this.queryParams).then(response => {
-        this.treeList = this.handleTree(response.data, "id", "pid");
-        this.loading = false;
-      });
+      this.loading = true
+      listTree(this.queryParams).then((response) => {
+        this.treeList = this.handleTree(response.data, 'id', 'pid')
+        this.loading = false
+      })
     },
     /** 转换测试树列表数据结构 */
     normalizer(node) {
       if (node.children && !node.children.length) {
-        delete node.children;
+        delete node.children
       }
       return {
         id: node.id,
         label: node.name,
-        children: node.children
-      };
+        children: node.children,
+      }
     },
-	/** 查询测试树列表下拉树结构 */
+    /** 查询测试树列表下拉树结构 */
     getTreeselect() {
-      listTree().then(response => {
-        this.treeOptions = [];
-        const data = { id: 0, name: '顶级节点', children: [] };
-        data.children = this.handleTree(response.data, "id", "pid");
-        this.treeOptions.push(data);
-      });
+      listTree().then((response) => {
+        this.treeOptions = []
+        const data = { id: 0, name: '顶级节点', children: [] }
+        data.children = this.handleTree(response.data, 'id', 'pid')
+        this.treeOptions.push(data)
+      })
     },
     // 用户性别字典翻译
     sexFormat(row, column) {
-      return this.selectDictLabel(this.sexOptions, row.sex);
+      return this.selectDictLabel(this.sexOptions, row.sex)
     },
     // 取消按钮
     cancel() {
-      this.open = false;
-      this.reset();
+      this.open = false
+      this.reset()
     },
     // 表单重置
     reset() {
@@ -224,77 +219,80 @@ export default {
         name: null,
         pid: null,
         master: null,
-        sex: null
-      };
-      this.resetForm("form");
+        sex: null,
+      }
+      this.resetForm('form')
     },
     /** 搜索按钮操作 */
     handleQuery() {
-      this.getList();
+      this.getList()
     },
     /** 重置按钮操作 */
     resetQuery() {
-      this.resetForm("queryForm");
-      this.handleQuery();
+      this.resetForm('queryForm')
+      this.handleQuery()
     },
     /** 新增按钮操作 */
     handleAdd(row) {
-      this.reset();
-      this.getTreeselect();
+      this.reset()
+      this.getTreeselect()
       if (row != null && row.id) {
-        this.form.pid = row.id;
+        this.form.pid = row.id
       } else {
-        this.form.pid = 0;
+        this.form.pid = 0
       }
-      this.open = true;
-      this.title = "添加测试树列表";
+      this.open = true
+      this.title = '添加测试树列表'
     },
     /** 修改按钮操作 */
     handleUpdate(row) {
-      this.reset();
-      this.getTreeselect();
+      this.reset()
+      this.getTreeselect()
       if (row != null) {
-        this.form.pid = row.id;
+        this.form.pid = row.id
+        getTree(row.id).then((response) => {
+          this.form = response.data
+          this.open = true
+          this.title = '修改测试树列表'
+        })
       }
-      getTree(row.id).then(response => {
-        this.form = response.data;
-        this.open = true;
-        this.title = "修改测试树列表";
-      });
     },
     /** 提交按钮 */
     submitForm() {
-      this.$refs["form"].validate(valid => {
+      this.$refs['form'].validate((valid) => {
         if (valid) {
           if (this.form.id != null) {
-            updateTree(this.form).then(response => {
-              this.msgSuccess("修改成功");
-              this.open = false;
-              this.getList();
-            });
+            updateTree(this.form).then((response) => {
+              this.msgSuccess('修改成功')
+              this.open = false
+              this.getList()
+            })
           } else {
-            addTree(this.form).then(response => {
-              this.msgSuccess("新增成功");
-              this.open = false;
-              this.getList();
-            });
+            addTree(this.form).then((response) => {
+              this.msgSuccess('新增成功')
+              this.open = false
+              this.getList()
+            })
           }
         }
-      });
+      })
     },
     /** 删除按钮操作 */
     handleDelete(row) {
-      this.$confirm('是否确认删除测试树列表编号为"' + row.id + '"的数据项?', "警告", {
-          confirmButtonText: "确定",
-          cancelButtonText: "取消",
-          type: "warning"
-        }).then(function() {
-          return delTree(row.id);
-        }).then(() => {
-          this.getList();
-          this.msgSuccess("删除成功");
-        }).catch(() => {});
-    }
-  }
-};
+      this.$confirm('是否确认删除测试树列表编号为"' + row.id + '"的数据项?', '警告', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning',
+      })
+        .then(function () {
+          return delTree(row.id)
+        })
+        .then(() => {
+          this.getList()
+          this.msgSuccess('删除成功')
+        })
+        .catch(() => {})
+    },
+  },
+}
 </script>

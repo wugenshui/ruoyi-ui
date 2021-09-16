@@ -239,13 +239,14 @@ export function debounce(func, wait, immediate) {
 }
 
 /**
- * This is just a simple version of deep copy
- * Has a lot of edge cases bug
- * If you want to use a perfect deep copy, use lodash's _.cloneDeep
- * @param {Object} source
- * @returns {Object}
+ * 深拷贝
+ * @param {Object} source 源对象
+ * @returns {Object} 拷贝后目标对象
  */
 export function deepClone(source) {
+  if (source == null) {
+    return null
+  }
   if (!source && typeof source !== 'object') {
     throw new Error('error arguments', 'deepClone')
   }
